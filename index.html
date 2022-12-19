@@ -81,9 +81,14 @@
                 drop-shadow(1px 1px 0 black) 
                 drop-shadow(-1px -1px 0 black);
         }
+        .buttons {
+            width:100%;
+            text-align: center;
+        }
         button {
             padding: 0 0;
             margin: 0 0;
+            display: inline-block;
         }
     </style>
 </head>
@@ -91,8 +96,18 @@
     <div id="boxes">
         <div class="blur" id="cell">
             <h1>The Animal Cell</h1>
-            <button onclick="cellMembrane()" class="center">Cell Membrane</button>
-            <button onclick="ribosomes()" class="center">Ribosomes</button>
+            <div id="buttons" class="center">
+                <button onclick="cellMembrane()" class="">Cell Membrane</button>
+                <button onclick="ribosomes()" class="">Ribosomes</button>
+                <button onclick="nucleus()" class="">Nucleus</button>
+                <button onclick="golgi()" class="">Golgi Apparatus</button>
+                <button onclick="lysosome()" class="">Lysosome</button>
+                <button onclick="rough()" class="">Rough ER</button>
+                <button onclick="smooth()" class="">Smooth ER</button>
+                <button onclick="vacuole()" class="">Vacuole</button>
+                <button onclick="cytoskeleton()" class="">Cytoskeleton</button>
+                <button onclick="mitochondria()" class="">Mitochondria</button>
+            </div>
             <div id="cellimg">
                 <img src="images/cell-membrane.png" style="z-index: 1;"> 
                 <img src="images/zoom-cell-membrane.png" style="z-index: 2;">
@@ -111,7 +126,7 @@
         </div>
         <div class="blur" id="info">
             <h1>Organelle Name</h1>
-            <p> .. </p>
+            <p>Click on an organelle in the image or click one of the buttons.</p>
         </div>
     </div>
     <script>
@@ -127,6 +142,46 @@
         function ribosomes() {
             OrganelleName.innerHTML = "Ribosomes";
             OrganelleInfo.innerHTML = "They are made up of RNA and protein that helps the cell produce proteins.";
+        }
+
+        function nucleus() {
+            OrganelleName.innerHTML = "Nucleus";
+            OrganelleInfo.innerHTML = "The Nucleus is spherical, double membraned, and has nuclear pores that hold our DNA. It also helps protein production, moves materials, and is the control center of our cells.";
+        }
+
+        function golgi() {
+            OrganelleName.innerHTML = "Golgi Apparatus";
+            OrganelleInfo.innerHTML = "Its appearance is stacks of flattened membranes that help modify, sort, package, and ship proteins to its final destination.";
+        }
+
+        function lysosome() {
+            OrganelleName.innerHTML = "Lysosome";
+            OrganelleInfo.innerHTML = "They are small and spherical enclosed membrances that have enzymes inside that help break down macromolecules, and remove junk.";
+        }
+
+        function rough() {
+            OrganelleName.innerHTML = "Rough ER";
+            OrganelleInfo.innerHTML = "The Rough ER is a folded membrane that has ribosomes on it that helps the cell produce proteins.";
+        }
+
+        function smooth() {
+            OrganelleName.innerHTML = "Smooth ER";
+            OrganelleInfo.innerHTML = "The Smooth ER is a folded membrane that helps the cell synthesize lipids and detoxify drugs.";
+        }
+
+        function vacuole() {
+            OrganelleName.innerHTML = "Vacuole";
+            OrganelleInfo.innerHTML = "They are large, sac-like enclosed membranes that help the cell store materials.";
+        }
+
+        function cytoskeleton() {
+            OrganelleName.innerHTML = "Cytoskeleton";
+            OrganelleInfo.innerHTML = "Is an organelle that consists of a network of protein filaments that maintain cell shape and moves cell parts which helps the cell move.";
+        }
+
+        function mitochondria() {
+            OrganelleName.innerHTML = "Mitochondria";
+            OrganelleInfo.innerHTML = "This organelle has an inner membrane that's folded, and an outer membrane that converts food into chemical energy and makes it into a compound for easier digestion.";
         }
 
         elemHovered = function(ev, elem, hit) {
@@ -149,36 +204,28 @@
                 let stripped = elem.attr("src").substring(elem.attr("src").indexOf("images/") + 7);
                 switch(stripped) {
                     case "nucleus.png":
-                        OrganelleName.innerHTML = "Nucleus";
-                        OrganelleInfo.innerHTML = "The Nucleus is spherical, double membraned, and has nuclear pores that hold our DNA. It also helps protein production, moves materials, and is the control center of our cells.";
+                        nucleus();
                         break;
                     case "golgi-apparatus.png":
-                        OrganelleName.innerHTML = "Golgi Apparatus";
-                        OrganelleInfo.innerHTML = "Its appearance is stacks of flattened membranes that help modify, sort, package, and ship proteins to its final destination.";
+                        golgi();
                         break;
                     case "lysosome.png":
-                        OrganelleName.innerHTML = "Lysosome";
-                        OrganelleInfo.innerHTML = "They are small and spherical enclosed membrances that have enzymes inside that help break down macromolecules, and remove junk.";
+                        lysosome();
                         break;
                     case "rough-er.png":
-                        OrganelleName.innerHTML = "Rough ER";
-                        OrganelleInfo.innerHTML = "The Rough ER is a folded membrane that has ribosomes on it that helps the cell produce proteins.";
+                        rough();
                         break;
                     case "smooth-er.png":
-                        OrganelleName.innerHTML = "Smooth ER";
-                        OrganelleInfo.innerHTML = "The Smooth ER is a folded membrane that helps the cell synthesize lipids and detoxify drugs.";
+                        smooth();
                         break;
                     case "vacuole.png":
-                        OrganelleName.innerHTML = "Vacuole";
-                        OrganelleInfo.innerHTML = "They are large, sac-like enclosed membranes that help the cell store materials.";
+                        vacuole();
                         break;
                     case "cytoskeleton.png":
-                        OrganelleName.innerHTML = "Cytoskeleton";
-                        OrganelleInfo.innerHTML = "Is an organelle that consists of a network of protein filaments that maintain cell shape and moves cell parts which helps the cell move.";
+                        cytoskeleton();
                         break;
                     case "mitrochondria.png":
-                        OrganelleName.innerHTML = "Mitrochondria";
-                        OrganelleInfo.innerHTML = "This organelle has an inner membrane that's folded, and an outer membrane that converts food into chemical energy and makes it into a compound for easier digestion.";
+                        mitochondria();
                         break;
                 }
             }
