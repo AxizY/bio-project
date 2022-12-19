@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biology Organelles</title>
+    <link rel="icon" href="/images/favicon.png">
+    <link href='https://fonts.googleapis.com/css?family=Old Standard TT' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="pixelselect.js"></script>
+    <style>
+        html, body {
+            height:100%; 
+        }
+        body {
+            background: url("images/background.png") repeat 0 0 / 100px 100px, #06370d;
+            animation: move 100s linear infinite;
+        }
+        @keyframes move {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 100%;
+            }
+        }
+        h1 {
+            font-family: 'Bebas Neue', serif;
+            text-align: center;
+            font-size: 90px;
+            color: white;
+            line-height: 0%;
+            padding: 0 0;
+        }
+        #boxes {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #info, #cell {
+            height: 200vh;
+            width: 49%;
+        }
+        .center, p {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blur {
+            background-color: rgba(255, 255, 255, .15);  
+            backdrop-filter: blur(3px);
+        }
+        p {
+            font-family: 'Roboto', serif;
+            color: white;
+            width: 90%;
+            white-space: pre-wrap;
+            font-size: 20px;
+        }
+        #cellimg {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        img {
+            position: absolute;
+            width: 900px;
+            height: 900px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        img:hover {
+            cursor: pointer;
+        }
+        .hover {
+        -webkit-filter: 
+                drop-shadow(1px 1px 0 black)
+                drop-shadow(-1px -1px 0 black);
+            filter: 
+                drop-shadow(1px 1px 0 black) 
+                drop-shadow(-1px -1px 0 black);
+        }
+        button {
+            padding: 0 0;
+            margin: 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="boxes">
+        <div class="blur" id="cell">
+            <h1>The Animal Cell</h1>
+            <button onclick="cellMembrane()" class="center">Cell Membrane</button>
+            <button onclick="ribosomes()" class="center">Ribosomes</button>
+            <div id="cellimg">
+                <img src="images/cell-membrane.png" style="z-index: 1;"> 
+                <img src="images/zoom-cell-membrane.png" style="z-index: 2;">
+                <img src="images/nucleus.png" style="z-index: 3;" class="pixelmap" data-precalc="false">
+                <img src="images/ribosomes.png" style="z-index: 4;" class="pixelmap" data-precalc="false">
+                <img src="images/golgi-apparatus.png" style="z-index: 5;" class="pixelmap" data-precalc="false">
+                <img src="images/centriole.png" style="z-index: 6;">
+                <img src="images/lysosome.png" style="z-index: 7;" class="pixelmap" data-precalc="false">
+                <img src="images/nucleus.png" style="z-index: 8;" class="pixelmap" data-precalc="false">
+                <img src="images/rough-er.png" style="z-index: 9;" class="pixelmap" data-precalc="false">
+                <img src="images/smooth-er.png" style="z-index: 10;" class="pixelmap" data-precalc="false">
+                <img src="images/vacuole.png" style="z-index: 11;" class="pixelmap" data-precalc="false">
+                <img src="images/cytoskeleton.png" style="z-index: 12;" class="pixelmap" data-precalc="false">
+                <img src="images/mitrochondria.png" style="z-index: 13;" class="pixelmap" data-precalc="false">
+            </div>
+        </div>
+        <div class="blur" id="info">
+            <h1>Organelle Name</h1>
+            <p> .. </p>
+        </div>
+    </div>
+    <script>
+        const Organelles = document.getElementById("cellimg").getElementsByTagName("img");
+        const OrganelleName = document.getElementsByTagName("h1")[1];
+        const OrganelleInfo = document.getElementsByTagName("p")[0];
+
+        function cellMembrane() {
+            OrganelleName.innerHTML = "Cell Membrane";
+            OrganelleInfo.innerHTML = "They are flexible due to lipids, and have a phospholipid-bilayer that helps regulate materials entering and leaving the cell. It also protects and supports the cell. They phospolipid-bilayer is made up of a hydrophilic head and a hydrophobic tail. The hydrophilic head is attracted to water, and the hydrophobic tail is repelled by water. ";
+        }
+
+        function ribosomes() {
+            OrganelleName.innerHTML = "Ribosomes";
+            OrganelleInfo.innerHTML = "They are made up of RNA and protein that helps the cell produce proteins.";
+        }
+
+        elemHovered = function(ev, elem, hit) {
+            if (hit == true) {
+                if (!elem.hasClass('hover')) {
+                    elem.addClass('hover');
+                }
+            } else {
+                elem.removeClass('hover');
+            }
+            ev.preventDefault();
+        };
+
+        elemOut = function(ev, elem, hit) {
+            elem.removeClass('hover');
+        };
+
+        elemClicked = function(ev, elem, hit) {
+            if (hit === true) {
+                let stripped = elem.attr("src").substring(elem.attr("src").indexOf("images/") + 7);
+                switch(stripped) {
+                    case "nucleus.png":
+                        OrganelleName.innerHTML = "Nucleus";
+                        OrganelleInfo.innerHTML = "The Nucleus is spherical, double membraned, and has nuclear pores that hold our DNA. It also helps protein production, moves materials, and is the control center of our cells.";
+                        break;
+                    case "golgi-apparatus.png":
+                        OrganelleName.innerHTML = "Golgi Apparatus";
+                        OrganelleInfo.innerHTML = "Its appearance is stacks of flattened membranes that help modify, sort, package, and ship proteins to its final destination.";
+                        break;
+                    case "lysosome.png":
+                        OrganelleName.innerHTML = "Lysosome";
+                        OrganelleInfo.innerHTML = "They are small and spherical enclosed membrances that have enzymes inside that help break down macromolecules, and remove junk.";
+                        break;
+                    case "rough-er.png":
+                        OrganelleName.innerHTML = "Rough ER";
+                        OrganelleInfo.innerHTML = "The Rough ER is a folded membrane that has ribosomes on it that helps the cell produce proteins.";
+                        break;
+                    case "smooth-er.png":
+                        OrganelleName.innerHTML = "Smooth ER";
+                        OrganelleInfo.innerHTML = "The Smooth ER is a folded membrane that helps the cell synthesize lipids and detoxify drugs.";
+                        break;
+                    case "vacuole.png":
+                        OrganelleName.innerHTML = "Vacuole";
+                        OrganelleInfo.innerHTML = "They are large, sac-like enclosed membranes that help the cell store materials.";
+                        break;
+                    case "cytoskeleton.png":
+                        OrganelleName.innerHTML = "Cytoskeleton";
+                        OrganelleInfo.innerHTML = "Is an organelle that consists of a network of protein filaments that maintain cell shape and moves cell parts which helps the cell move.";
+                        break;
+                    case "mitrochondria.png":
+                        OrganelleName.innerHTML = "Mitrochondria";
+                        OrganelleInfo.innerHTML = "This organelle has an inner membrane that's folded, and an outer membrane that converts food into chemical energy and makes it into a compound for easier digestion.";
+                        break;
+                }
+            }
+            ev.preventDefault();
+        };
+
+        $('.pixelmap').Pixelselect({
+            over: elemHovered,
+            out: elemOut,
+            click: elemClicked,
+            sublayers: true,
+            debug: false
+        });
+    </script>
+</body>
+</html>
