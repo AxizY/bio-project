@@ -28,7 +28,7 @@
         h1 {
             font-family: 'Bebas Neue', serif;
             text-align: center;
-            font-size: 90px;
+            font-size: 6vw;
             color: white;
             line-height: 0%;
             padding: 0 0;
@@ -70,25 +70,34 @@
             margin-left: auto;
             margin-right: auto;
         }
-        img:hover {
+        .hover:hover {
             cursor: pointer;
         }
         .hover {
-        -webkit-filter: 
+            -webkit-filter: 
                 drop-shadow(1px 1px 0 black)
                 drop-shadow(-1px -1px 0 black);
             filter: 
                 drop-shadow(1px 1px 0 black) 
                 drop-shadow(-1px -1px 0 black);
         }
-        .buttons {
-            width:100%;
+        #buttons {
+            width: 100%;
             text-align: center;
+            vertical-align: middle;
+            padding: 0, 0;
+            margin: 0 0;
         }
         button {
-            padding: 0 0;
-            margin: 0 0;
+            padding-bottom: 5px;
             display: inline-block;
+            font-size: 20px;
+            border: none;
+        }
+        button:hover {
+            background-color: gray;
+            outline: black 1px;
+            cursor: pointer
         }
     </style>
 </head>
